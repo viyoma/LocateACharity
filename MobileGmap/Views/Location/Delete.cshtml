@@ -1,0 +1,63 @@
+﻿@model MobileGmap.NGODetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Menu</li>
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Map", "Map", "Home")</li>
+</ul>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend></legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PlaceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PlaceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Requirements)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Requirements)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GeoLong)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GeoLong)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GeoLat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GeoLat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Population)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Population)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.EventsScheduled)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventsScheduled)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

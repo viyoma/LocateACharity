@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MobileGmap.NGODetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Menu</li>
+    <li>@Html.ActionLink("Map", "Map", "Home")</li>
+    <li>@Html.ActionLink("Add Location", "Create", "Location")</li>
+</ul>
+
+<h2>Locations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlaceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Requirements)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeoLong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeoLat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Population)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventsScheduled)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlaceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Requirements)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeoLong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeoLat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Population)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventsScheduled)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

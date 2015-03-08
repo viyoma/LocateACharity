@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NGOMobModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="NGOMobModelStoreContainer">
+          <EntitySet Name="NGODetails" EntityType="NGOMobModel.Store.NGODetails" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="NGODetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Requirements" Type="nvarchar(max)" />
+          <Property Name="GeoLong" Type="nvarchar(max)" />
+          <Property Name="GeoLat" Type="nvarchar(max)" />
+          <Property Name="Population" Type="nvarchar(max)" />
+          <Property Name="EventsScheduled" Type="nvarchar(max)" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NGOMobModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="NGOMobEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NGODetails" EntityType="NGOMobModel.NGODetail" />
+        </EntityContainer>
+        <EntityType Name="NGODetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Requirements" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GeoLong" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GeoLat" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Population" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="EventsScheduled" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NGOMobModelStoreContainer" CdmEntityContainer="NGOMobEntities">
+          <EntitySetMapping Name="NGODetails"><EntityTypeMapping TypeName="NGOMobModel.NGODetail"><MappingFragment StoreEntitySet="NGODetails">
+                <ScalarProperty Name="EventsScheduled" ColumnName="EventsScheduled" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="PlaceName" ColumnName="PlaceName" />
+            <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+            <ScalarProperty Name="GeoLong" ColumnName="GeoLong" />
+            <ScalarProperty Name="GeoLat" ColumnName="GeoLat" />
+            <ScalarProperty Name="Population" ColumnName="Population" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="NGOMobModel.NGODetail" Width="1.5" PointX="0.75" PointY="0.75" Height="2.172587890625" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

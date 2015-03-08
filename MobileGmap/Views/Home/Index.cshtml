@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Locate a Charity";
+}
+<style>
+    .HomeText
+    {
+        font-family: cursive;
+    }
+</style>
+<h2>@ViewBag.Message</h2>
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Menu</li>
+    <li>@Html.ActionLink("Map", "Map", "Home")</li>
+    <li>@Html.ActionLink("Add Location", "Create", "Location")</li>
+</ul>
+
+<section id="content">
+    <div>
+        <p class="HomeText">
+        ‘Locate a Charity’ is a social welfare app, a one stop place that allows anyone
+        with the access to the app to locate charities in a specific location.
+        <br />
+        <br />
+        The listed charities could be looking for donation, volunteer work or any other needs ( help
+        with maintenance work, spent time with charity beneficiaries, celebrate birthday
+        etc.)and wants that patrons could help fulfil. <br /><br />
+        The app lays out charities on a map view based on the current / chosen location of the user. It allows charities
+        to list details such as contact information, operational hours, link to payment
+        gateways, opportunities for volunteering etc. along with their needs, show progress
+        on donation and other relevant facts. 
+        <br />
+        <br />
+        Overall, it’s a interface designed for charities
+        to tap into a growing sense of social responsibility amongst the current generation
+        and solicit relevant help to fulfil their social goals.
+    </p>
+        <figure style="text-align: center">
+        <img src="../../Content/images/charity.jpg" alt="Locate a Charity" style="max-width: none;
+            width: 80%; height: 400px" />
+
+        </figure>
+    </div>
+</section>

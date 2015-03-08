@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "Locate a Charity";
+}
+<!-- This css is to ensure that the google map contols (zoom bar etc) show and size correctly. -->
+<style>
+    #map_canvas img
+    {
+        max-width: none;
+    }
+</style>
+<!-- This css is to give a nice big popup "info window" when a marker is clicked on the map -->
+<style>
+    .infoDiv
+    {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: white;
+    }
+</style>
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Menu</li>
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Add Location", "Create", "Location")</li>
+</ul>
+<!-- This is the div that will contain the Google Map -->
+<div id="map_canvas" style="height: 600px;">
+</div>
+<!-- Enclose the Javascript in a "section" so that it is rendered in the correct order after scripts have been loaded etc -->
+@section Header {
+    <section id="Header" class="scripts">
+        <script type="text/javascript">
+
+    $(document).ready(function () {
+        Initialize();
+    });
+
+    // Where all the fun happens 
+    function Initialize() {
+        // Google has tweaked their interface somewhat - this tells the api to use that new UI
+        google.maps.visualRefresh = true;
+  if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+        alert('geolocation not supported');
+    }
+    function error(msg) {
+        alert('error: ' + msg);
+    }
+    function success(position) {
+
+        var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var mapOptions = {
+            zoom: 12,
+            center: myLatlng,
+            scaleControl: true,
+            draggable: true,
+            scrollwheel: true,
+            navigationControl: true,
+            mapTypeControl: true
+        }
+
+
+       var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Current Location'
+        });
+                // You can make markers different colors...  google it up!
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+
+        
+
+        // a sample list of JSON encoded data of places to visit in Liverpool, UK
+        // you can either make up a JSON list server side, or call it from a controller using JSONResult
+//        var data = [
+//                  { "Id": 1, "PlaceName": "Samarthan NGO", "OpeningHours":"9-5, M-F","GeoLong": "12.971599", "GeoLat": "77.594563" },
+//                  { "Id": 2, "PlaceName": "Madhu mansion ", "OpeningHours": "9-1,2-5, M-F", "GeoLong": "12.906274", "GeoLat": "77.573606" },
+//                  { "Id": 3, "PlaceName": "Smile foundation", "OpeningHours": "9-7, M-F", "GeoLong": "12.980539", "GeoLat": "77.613446" },
+//                  { "Id": 4, "PlaceName": "Bosco", "OpeningHours": "10-6, M-F", "GeoLong": "12.979295", "GeoLat": "77.576203" }
+        //               ];
+        var data;
+        $.ajax({
+            url: '/Location/LoadDetails',
+            type: 'Get',
+            data: '',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            error: function (xhr) {
+                data = "";
+                alert('Error: ' + xhr.statusText);
+            },
+            success: function (result) {
+                data = result;
+            },
+            async: false,
+            processData: false
+        });
+
+        // Using the JQuery "each" selector to iterate through the JSON list and drop marker pins
+        var infowindow;
+        $.each(data, function (i, item) {
+
+            var position = new google.maps.LatLng(item.GeoLong, item.GeoLat);
+            var content = "<div class='infoDiv'><h2>" + item.PlaceName + "</h2>" + "<div><h4>Requirements: " + item.Requirements + "</h4></div>" + "<div><h4>Population: " + item.Population + "</h4></div>" + "<div><h4>Events Scheduled: " + item.EventsScheduled + "</h4></div></div>";
+            var title = item.PlaceName;
+            var openWindowFn;
+            var closure = function (content, position) {
+                openWindowFn = function () {
+                    if (infowindow) {
+                        infowindow.close();
+                    }
+                    infowindow = new google.maps.InfoWindow({
+                        position: position,
+                        content: content
+                    });
+                    infowindow.open(map, marker);
+                }
+            } (content, position);
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: title
+            });
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+
+            google.maps.event.addListener(marker, 'click', openWindowFn);
+        })
+}
+
+    }
+
+
+        </script>
+    </section>
+}

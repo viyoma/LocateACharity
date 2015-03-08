@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileGmap", "MobileGmap\MobileGmap.csproj", "{71051F04-2C80-4BB1-BA2B-DE3F1B05C5C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileGmap.Tests", "MobileGmap.Tests\MobileGmap.Tests.csproj", "{E277428D-D971-46D0-A679-BC5A128AC693}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71051F04-2C80-4BB1-BA2B-DE3F1B05C5C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71051F04-2C80-4BB1-BA2B-DE3F1B05C5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71051F04-2C80-4BB1-BA2B-DE3F1B05C5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71051F04-2C80-4BB1-BA2B-DE3F1B05C5C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E277428D-D971-46D0-A679-BC5A128AC693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E277428D-D971-46D0-A679-BC5A128AC693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E277428D-D971-46D0-A679-BC5A128AC693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E277428D-D971-46D0-A679-BC5A128AC693}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

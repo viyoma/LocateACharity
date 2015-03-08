@@ -1,0 +1,115 @@
+﻿@model MobileGmap.NGODetail
+
+@{
+    ViewBag.Title = "Add a location";
+}
+
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Menu</li>
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Map", "Map", "Home")</li>
+</ul>
+<h2>
+    Add a location</h2>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+        <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider">Details</li>
+        <li data-role="fieldcontain">
+            @Html.LabelFor(model => model.PlaceName)
+            @Html.EditorFor(model => model.PlaceName, "", "PlaceName")
+            @Html.ValidationMessageFor(model => model.PlaceName)
+        </li>
+        <li data-role="fieldcontain">
+            @Html.LabelFor(model => model.Requirements)
+            @Html.EditorFor(model => model.Requirements)
+            @Html.ValidationMessageFor(model => model.Requirements)
+        </li>
+        <li data-role="fieldcontain">
+            @Html.LabelFor(model => model.GeoLong)
+            @Html.EditorFor(model => model.GeoLong, "", "GeoLong")
+            @Html.ValidationMessageFor(model => model.GeoLong)
+        </li>
+        <li data-role="fieldcontain">
+            @Html.LabelFor(model => model.GeoLat)
+            @Html.EditorFor(model => model.GeoLat, "", "GeoLat")
+            @Html.ValidationMessageFor(model => model.GeoLat)
+        </li>
+            <li data-role="fieldcontain">
+                @Html.LabelFor(model => model.Population)
+                @Html.EditorFor(model => model.Population)
+                @Html.ValidationMessageFor(model => model.Population)
+            </li>
+            <li data-role="fieldcontain">
+                @Html.LabelFor(model => model.EventsScheduled)
+                @Html.EditorFor(model => model.EventsScheduled)
+                @Html.ValidationMessageFor(model => model.EventsScheduled)
+            </li>
+        <li data-role="fieldcontain">
+            <input type="submit" value="Create" />
+        </li>
+    </ul>
+    
+    @Html.ActionLink("Locations", "Index", "Location")
+}
+
+@section Header {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ////////////////////////ALL textbox to upper
+            $("#PlaceName").change(function () {
+
+
+//                codeAddress();
+            });
+
+            $("#PlaceName").keyup(function () {
+                autopopulate();
+            });
+        });
+
+        function codeAddress() {
+            var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('PlaceName').value;
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var position = results[0].geometry.location;
+                    $("#GeoLong").val(position.lat());
+                    $("#GeoLat").val(position.lng());
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+
+        function autopopulate() {
+
+            // Create the search box and link it to the UI element.
+            var input = (
+      document.getElementById('PlaceName'));
+
+            var searchBox = new google.maps.places.SearchBox(
+            (input));
+
+            // Listen for the event fired when the user selects an item from the
+            // pick list. Retrieve the matching places for that item.
+            google.maps.event.addListener(searchBox, 'places_changed', function () {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    codeAddress();
+                    return;
+                }
+                codeAddress();
+            });
+        }
+    </script>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

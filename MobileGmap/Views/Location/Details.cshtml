@@ -1,0 +1,60 @@
+﻿@model MobileGmap.NGODetail
+
+@{
+    ViewBag.Title = "Details";
+}
+<ul data-role="listview" data-inset="true">
+    <li data-role="list-divider">Menu</li>
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Map", "Map", "Home")</li>
+</ul>
+<h2>Details</h2>
+
+<fieldset>
+    <legend></legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PlaceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PlaceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Requirements)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Requirements)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GeoLong)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GeoLong)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GeoLat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GeoLat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Population)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Population)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.EventsScheduled)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventsScheduled)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
