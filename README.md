@@ -1,4 +1,4 @@
 # LocateACharity
 https://github.com/viyoma
 
-This is coneected to Jenkins
+This is connected to Jenkins
