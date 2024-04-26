@@ -1,0 +1,26 @@
+Name: Workflow_abe5
+SchemaVersion: "1.0"
+
+# Optional - Set automatic triggers.
+Triggers:
+  - Type: Push
+    Branches:
+      - viyoma-patch-1
+
+# Required - Define action configurations.
+Actions:
+  List_Files:
+    # Identifies the action. Do not modify this value.
+    Identifier: aws/build@v1.0.0
+
+    # Specifies the source and/or artifacts to pass to the action as input.
+    Inputs:
+      # Optional
+      Sources:
+        - WorkflowSource # This specifies that the action requires this Workflow as a source
+
+    # Defines the action's properties.
+    Configuration:
+      # Required - Steps are sequential instructions that run shell commands
+      Steps:
+        - Run: ls -l
